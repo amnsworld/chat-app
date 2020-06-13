@@ -41,6 +41,12 @@ socket.on('newuser', (data) => {
 $msgForm.addEventListener('submit', (event) => {
 	event.preventDefault()
 
+	const newMsg = document.createElement('li')
+	$msgList.appendChild(newMsg)
+
+	newMsg.textContent = event.currentTarget.txt.value;
+	newMsg.classList.add("messagesent");
+
 	socket.emit('chatmsg', {msg: event.currentTarget.txt.value})
 	event.currentTarget.txt.value = ''
 })
@@ -49,6 +55,6 @@ $msgForm.addEventListener('submit', (event) => {
 socket.on('chatmsg', (data) => {
 	const newMsg = document.createElement('li')
 	$msgList.appendChild(newMsg)
-
+	newMsg.classList.add("messagereceive");
 	newMsg.textContent = data.msg
 })
