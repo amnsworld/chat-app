@@ -8,18 +8,25 @@
 
 const $msgForm = document.getElementById('sendMsg')
 const $msgList = document.getElementById('messages')
-const $userNameEntered = document.getElementById('enterButton')
 const $userNameForm = document.getElementById('userdetails')
 
 const socket = io()
 
-// Send a message to say that I've connected
-socket.emit('newuser', {user: 'Grace Hopper', text:'dummy text'})
+let $username = 'Guest';
+
+// Function to get user name
+$userNameForm.addEventListener('submit',(event)=>{
+	event.preventDefault()
+	$msgForm.style.display='block';
+	$userNameForm.style.display='none';
+	$username = event.currentTarget.username.value;
+	
+	// Send a message to say that I've connected
+	socket.emit('newuser', {user: `${$username} joined the chat`})
+})
 
 // Event listener, waiting for an incoming "newuser"
 socket.on('newuser', (data) => {
-	console.log(`${data.user} has connected!`)
-	console.log(`${data.text}`)
 	const newMsg = document.createElement('li')
 	$msgList.appendChild(newMsg)
 
@@ -40,10 +47,4 @@ socket.on('chatmsg', (data) => {
 	$msgList.appendChild(newMsg)
 
 	newMsg.textContent = data.msg
-})
-
-$userNameForm.addEventListener('submit',(event)=>{
-	event.preventDefault()
-	$msgForm.style.display='block';
-	$userNameForm.style.display='none';
 })
