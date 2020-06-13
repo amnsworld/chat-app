@@ -1,12 +1,3 @@
-'use strict'
-
-const socket = io()
-
-// Send a message to say that I've connected
-socket.emit('newuser', {user: 'Grace Hopper'})
-
-// Event listener, waiting for an incoming "newuser"
-socket.on('newuser', (data) => console.log(`${data.user} has connected!`))
 
 
 // Listen for the 'submit' of a form
@@ -17,6 +8,23 @@ socket.on('newuser', (data) => console.log(`${data.user} has connected!`))
 
 const $msgForm = document.getElementById('sendMsg')
 const $msgList = document.getElementById('messages')
+const $userNameEntered = document.getElementById('enterButton')
+const $userNameForm = document.getElementById('userdetails')
+
+const socket = io()
+
+// Send a message to say that I've connected
+socket.emit('newuser', {user: 'Grace Hopper', text:'dummy text'})
+
+// Event listener, waiting for an incoming "newuser"
+socket.on('newuser', (data) => {
+	console.log(`${data.user} has connected!`)
+	console.log(`${data.text}`)
+	const newMsg = document.createElement('li')
+	$msgList.appendChild(newMsg)
+
+	newMsg.textContent = data.user
+})
 
 
 $msgForm.addEventListener('submit', (event) => {
@@ -32,4 +40,10 @@ socket.on('chatmsg', (data) => {
 	$msgList.appendChild(newMsg)
 
 	newMsg.textContent = data.msg
+})
+
+$userNameForm.addEventListener('submit',(event)=>{
+	event.preventDefault()
+	$msgForm.style.display='block';
+	$userNameForm.style.display='none';
 })
