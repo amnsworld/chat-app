@@ -17,7 +17,10 @@ let $username = 'Guest';
 // Function to get user name
 $userNameForm.addEventListener('submit',(event)=>{
 	event.preventDefault()
+
+	//enable msg box and chats only after entering username
 	$msgForm.style.display='block';
+	$msgList.style.display='flex';
 	$userNameForm.style.display='none';
 	$username = event.currentTarget.username.value;
 	
@@ -31,6 +34,7 @@ socket.on('newuser', (data) => {
 	$msgList.appendChild(newMsg)
 
 	newMsg.textContent = data.user
+	newMsg.classList.add("userjoined");
 })
 
 

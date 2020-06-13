@@ -2,11 +2,29 @@ body {
 	background-color: grey;
 }
 
-#sendMsg{
+#sendMsg, #messages{
 	display: none;
 }
 
 #userdetails
 {
 	display: block;
+}
+
+#messages{
+	width: 20em;
+	padding: 1em;
+
+	border: 1px solid black;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.userjoined{
+	border: 1px solid black;
+    display: inline;
+	padding: 0.3em;
+	
+	text-align: center;
+	margin-bottom: 1em;
 }
