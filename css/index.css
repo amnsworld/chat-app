@@ -1,9 +1,13 @@
 body {
-	background-color: grey;
+	background-color: white;
 }
 
 #sendMsg, #messages{
 	display: none;
+}
+
+#sendMsg{
+	margin-top: 1em;
 }
 
 #userdetails
@@ -14,33 +18,34 @@ body {
 #messages{
 	width: 20em;
 	padding: 1em;
-
 	border: 1px solid black;
 	flex-direction: column;
 	justify-content: center;
+	/* height: 50em;
+	overflow: auto; */
 }
 
 .userjoined{
 	border: 1px solid black;
     display: inline;
-	padding: 0.3em;
-	
+	padding: 0.3em;	
 	text-align: center;
 	margin-bottom: 1em;
 }
 
-.messagesent{
-	background-color: aqua;
-	color: blueviolet;
-	align-self: flex-end;
-	padding: 1em;
+.messagesent, .messagereceive{
+	border-radius: 10px;
+	padding: 0.5em;
 	margin-bottom: 1em;
+	color: white;
+}
+
+.messagesent{
+	background-color: #313e83;    
+    align-self: flex-end;   
 }
 
 .messagereceive{
-	background-color: brown;
+	background-color: grey;
 	align-self: flex-start;
-	padding: 1em;
-	margin-bottom: 1em;
-
 }
