@@ -49,3 +49,8 @@ body {
 	background-color: grey;
 	align-self: flex-start;
 }
+
+.senderDetails{
+	color: #f4f4f4;
+	font-size: 10px;
+}
